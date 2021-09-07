@@ -2,13 +2,13 @@ const express = require("express");
 var app = express();
 var esquema = require("../database/model");
 
-var todo = esquema.find();
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 require("../database/connection");
 app.use(express.json())
-app.use("/list", async (req, res) => res.send(await todo));
+app.use("/list", async (req, res) => res.send(await esquema.find()));
 
 app.post("/add", async (req, res) => {console.log(req.body)
 let titulo = req.body.titulo
